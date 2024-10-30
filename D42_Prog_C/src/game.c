@@ -1,20 +1,21 @@
-#include "../includes/carte.h"
-#include "../includes/game.h"
+#include "carte.h"
+#include "game.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 // Initialisation du jeu
 void Game_init(Game *game)
 {
 	// Création des cartes
-	Game_genererCartes(game->pioche);
+	int nbCartes = Game_genererCartes(game->pioche);
 
 	// Mélanger les cartes
-	Game_melanger(game->pioche, 180);
+	Game_melanger(game->pioche, nbCartes);
 }
 
 // Génération des cartes de jeu
-void Game_genererCartes(Carte pioche[])
+int Game_genererCartes(Carte *pioche)
 {
 	int index = 0;
 
@@ -34,14 +35,26 @@ void Game_genererCartes(Carte pioche[])
 			}
 		}
 	}
+
+	return index;
 }
 
 // Mélanger les cartes
-void Game_melanger(Carte pioche[], int taille)
+void Game_melanger(Carte *pioche, int taille)
 {
-	for (int i = taille - 1; i > 0; i--)
+	srand(time(NULL));
+
+	if (taille <= 1)
 	{
+		return;
+	}
+
+	for (int i = taille - 1; i < 0; i++)
+	{
+		// Séléctionner un indice aléatoire
 		int j = rand() % (i + 1);
+
+		// Echanger les cartes
 		Carte temp = pioche[i];
 		pioche[i] = pioche[j];
 		pioche[j] = temp;

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../includes/carte.h"
-#include "../includes/game.h"
+#include "carte.h"
+#include "game.h"
 
 void separator(int length)
 {

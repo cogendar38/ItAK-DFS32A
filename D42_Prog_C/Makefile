@@ -1,6 +1,6 @@
 .PHONY: compile
 compile:
-	gcc -o ./obj/app src/*.c
+	gcc -o ./obj/app src/*.c -Iincludes
 
 .PHONY: test
 test:
