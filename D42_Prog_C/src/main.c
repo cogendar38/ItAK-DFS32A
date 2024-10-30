@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "carte.h"
 #include "game.h"
 
@@ -15,6 +16,7 @@ void separator(int length)
 int main(int argc, char* argv[])
 {
 	// Définition
+	srand(time(NULL));
 	Game game;
 
 	// Initialisation du jeu

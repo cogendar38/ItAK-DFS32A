@@ -42,21 +42,14 @@ int Game_genererCartes(Carte *pioche)
 // Mélanger les cartes
 void Game_melanger(Carte *pioche, int taille)
 {
-	srand(time(NULL));
-
-	if (taille <= 1)
+	if (taille > 1)
 	{
-		return;
-	}
-
-	for (int i = taille - 1; i < 0; i++)
-	{
-		// Séléctionner un indice aléatoire
-		int j = rand() % (i + 1);
-
-		// Echanger les cartes
-		Carte temp = pioche[i];
-		pioche[i] = pioche[j];
-		pioche[j] = temp;
-	}
+		for (int i = 0; i < taille - 1; i++)
+		{
+			int j = i + rand() / (RAND_MAX / (taille - i) + 1);
+			Carte temp = pioche[j];
+			pioche[j] = pioche[i];
+			pioche[i] = temp;
+		}
+	}	
 }
