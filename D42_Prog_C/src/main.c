@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 	// Initialisation du jeu
 	Game_init(&game);
 
-	Carte carteChoisie = Game_prompt(game.pioche);
+	Carte carteChoisie = Game_prompt(game.player[0], game.tailleMainJoueur[0]);
 	printf("Carte choisie : ");
 	Carte_show(carteChoisie);
 
