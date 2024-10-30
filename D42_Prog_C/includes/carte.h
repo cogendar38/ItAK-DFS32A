@@ -11,5 +11,6 @@ typedef struct {
 	Couleur couleur;
 } Carte;
 
-void show(Carte carte);
+Carte Carte_create(int niveau, int couleur, int force);
+void Carte_show(Carte carte);
 #endif

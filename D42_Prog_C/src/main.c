@@ -15,12 +15,16 @@ void separator(int length)
 int main(int argc, char* argv[])
 {
 	// Définition
-	Carte tableau[3][5];
-	Carte main[10];
-	int tailleMain = 10;	
+	Game game;
 
-	// Initialisation
-	Game_init(tableau);
+	// Initialisation du jeu
+	Game_init(&game);
+
+	// Afficher la première carte
+	for (int i = 0; i < 180; i++)
+	{
+		Carte_show(game.pioche[i]);
+	}
 
 	// Retour à la ligne
 	printf("\n");
