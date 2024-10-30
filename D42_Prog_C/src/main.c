@@ -22,11 +22,9 @@ int main(int argc, char* argv[])
 	// Initialisation du jeu
 	Game_init(&game);
 
-	// Afficher la première carte
-	for (int i = 0; i < 180; i++)
-	{
-		Carte_show(game.pioche[i]);
-	}
+	Carte carteChoisie = Game_prompt(game.pioche);
+	printf("Carte choisie : ");
+	Carte_show(carteChoisie);
 
 	// Retour à la ligne
 	printf("\n");

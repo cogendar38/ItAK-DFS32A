@@ -53,3 +53,12 @@ void Game_melanger(Carte *pioche, int taille)
 		}
 	}	
 }
+
+// Prompt l'utilisateur pour choisir une carte
+Carte Game_prompt(Carte *player)
+{
+	int index;
+	printf("Choisissez une carte (index) : ");
+	scanf("%d", &index);
+	return player[index];
+}

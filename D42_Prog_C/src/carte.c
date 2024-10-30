@@ -1,4 +1,4 @@
-#include "../includes/carte.h"
+#include "carte.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
