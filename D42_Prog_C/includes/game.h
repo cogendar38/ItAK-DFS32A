@@ -20,6 +20,5 @@ void Game_start(Game *game);
 void Game_playCarte(Game *game, Carte carte, int playerNumber);
 Carte Game_prompt(Player *player);
 void Gamer_piocherCarte(Game *game, int playerNumber);
-int Game_checkEmptySpace(Game *game, int line);
-void Game_emptyTheTable(Game *game);
+
 #endif

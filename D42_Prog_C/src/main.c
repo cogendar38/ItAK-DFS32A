@@ -37,11 +37,15 @@ int main(int argc, char* argv[])
 		Carte_show(carteChoisie);
 
 		// Jouer la carte
-		Game_playCarte(&game, carteChoisie, curentPlayer);
+		Player_playCarte(&game.players[curentPlayer], carteChoisie);
 
 		tourIndex++;
 		curentPlayer = !curentPlayer;
-	} while (tourIndex < 10);
+	} while (tourIndex < 4);
+
+	// Afficher la force de chaque joueur
+	printf("Joueur %s, force %d\n", game.players[0].name, game.players[0].forceTotal);
+	printf("Joueur %s, force %d\n", game.players[1].name, game.players[1].forceTotal);
 
 	// Retour à la ligne
 	printf("\n");
