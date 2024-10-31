@@ -3,6 +3,7 @@
 #include <time.h>
 #include "carte.h"
 #include "game.h"
+#include "player.h"
 
 void separator(int length)
 {
@@ -27,7 +28,7 @@ int main(int argc, char* argv[])
 	int tourIndex = 0;
 
 	do {
-		Carte carteChoisie = Game_prompt(game.player[0], game.tailleMainJoueur[0]);
+		Carte carteChoisie = Game_prompt(game.players[0].main, game.players[0].tailleMain);
 		printf("Vous avez choisie la carte : ");
 		Carte_show(carteChoisie);
 

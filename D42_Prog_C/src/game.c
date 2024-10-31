@@ -1,5 +1,6 @@
 #include "carte.h"
 #include "game.h"
+#include "player.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -10,11 +11,17 @@ void Game_init(Game *game)
 	// Vider le tableau
 	Game_emptyTheTable(game);
 
+	// Créer nos joueurs
+	Player player1 = Player_createPlayer();
+	Player player2 = Player_createPlayer();
+
+	// Stocker les joueurs
+	game->players[0] = player1;
+	game->players[1] = player2;
+
 	// Création des cartes
 	int nbCartes = Game_genererCartes(game->pioche);
 	game->taillePioche = nbCartes;
-	game->tailleMainJoueur[0] = 0;
-	game->tailleMainJoueur[1] = 0;
 
 	// Mélanger les cartes
 	Game_melanger(game->pioche, nbCartes);
@@ -86,8 +93,8 @@ void Game_piocherCarte(Game *game, int playerNumber)
 {
 	if(game->taillePioche > 0)
 	{
-		game->player[playerNumber][game->tailleMainJoueur[playerNumber]] = game->pioche[game->taillePioche - 1];
-		(game->tailleMainJoueur[playerNumber])++;
+		game->players[playerNumber].main[game->players[playerNumber].tailleMain] = game->pioche[game->taillePioche - 1];
+		(game->players[playerNumber].tailleMain)++;
 		(game->taillePioche)--;
 	}
 	else

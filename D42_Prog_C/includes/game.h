@@ -1,13 +1,15 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "carte.h"
+#include "player.h"
+
 typedef struct {
 	Carte tableau[3][5];
 	Carte main[10];
     Carte pioche[180];
 	int taillePioche;
-	Carte player[2][50];
-	int tailleMainJoueur[2];
+	Player players[2];
 } Game;
 
 void Game_init(Game *game);
