@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "carte.h"
 #include "game.h"
 
@@ -15,16 +16,15 @@ void separator(int length)
 int main(int argc, char* argv[])
 {
 	// Définition
+	srand(time(NULL));
 	Game game;
 
 	// Initialisation du jeu
 	Game_init(&game);
 
-	// Afficher la première carte
-	for (int i = 0; i < 180; i++)
-	{
-		Carte_show(game.pioche[i]);
-	}
+	Carte carteChoisie = Game_prompt(game.player[0], game.tailleMainJoueur[0]);
+	printf("Carte choisie : ");
+	Carte_show(carteChoisie);
 
 	// Retour à la ligne
 	printf("\n");

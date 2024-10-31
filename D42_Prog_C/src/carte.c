@@ -1,4 +1,4 @@
-#include "../includes/carte.h"
+#include "carte.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -94,5 +94,5 @@ void Carte_show(Carte carte)
 	const char *forces[] = {"2", "3", "4", "5", "6", "10"};
 	const char *couleurs[] = {"blanc", "gris", "noir", "bleu", "orange", "rouge", "violet", "rose", "jaune", "vert"};
 
-	printf("%s-%s-%s", niveaux[carte.niveau], couleurs[carte.couleur], forces[carte.force]);
+	printf("Niveau %s - Couleur %s - Force %s\n", niveaux[carte.niveau], couleurs[carte.couleur], forces[carte.force]);
 }
