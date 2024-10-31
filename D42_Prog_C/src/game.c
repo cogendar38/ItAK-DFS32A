@@ -118,11 +118,9 @@ void Game_afficherMain(Carte *mainJoueur, int tailleMain)
 	}
 }
 
-int Game_checkEmptySpace(Game *game, Carte carte, int line) {
+int Game_checkEmptySpace(Game *game, int line) {
     for (int i = 0; i < 5; i++) {
         if (game->tableau[line][i].niveau == -1) {
-            // Espace vide
-            game->tableau[line][i] = carte;
             return i;
         }
     }
@@ -132,26 +130,41 @@ int Game_checkEmptySpace(Game *game, Carte carte, int line) {
 // Jouer une carte
 void Game_playCarte(Game *game, Carte carte, int playerNumber)
 {
-	switch (carte.niveau)
+	// Chercher un emplacement disponible
+	int space = Game_checkEmptySpace(game, carte.niveau);
+
+	if(space == -1)
 	{
-		case 0:
-			// Chercher un endroit
-			int space = Game_checkEmptySpace(game, carte, 0);
-			if (space == -1)
-			{
-				printf("Aucun emplacement libre dans la rangée 0");
-			}
-			else
-			{
-				printf("%s %d\n", "La carte à été placée dans la case ", space);
-			}
-			break;
-		case 1:
-			// Chercher un endroit vide dans la rangée 1 et vérifier si une carte est placée dans la rangée du dessus
-			break;
-		case 2:
-			// Checher un endroit vide dans la rangée 2 et vérifier si une carte est placée dans la rangée du dessus
+		printf("Aucun emplacement disponible pour la rangée %d\n", carte.niveau + 1);
+		return;
 	}
+
+	if (carte.niveau > 0)
+	{
+		switch (carte.niveau)
+		{
+			case 1:
+				// Vérifier la présence d'une carte dans la rangée 0
+				if (game->tableau[0][space].niveau == -1)
+				{
+					printf("/!\\ Impossible de jouer cette carte, vous devez d'abord jouer une niveau 1\n");
+					return;
+				}
+				break;
+			case 2:
+				// Vérifier la présence d'une carte dans la rangée 1
+				if (game->tableau[1][space].niveau == -1)
+				{
+					printf("/!\\ Impossible de jouer cette carte, vous devez d'abord jouer une niveau 2\n");
+					return;
+				}
+				break;
+		}
+	}
+
+	// Placer la carte
+	game->tableau[carte.niveau][space] = carte;
+	printf("%s %d\n", "La carte à été placée dans la case ", space);
 }
 
 // Prompt l'utilisateur pour choisir une carte

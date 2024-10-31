@@ -19,6 +19,6 @@ void Game_afficherMain(Carte *mainJoueur, int tailleMain);
 void Game_playCarte(Game *game, Carte carte, int playerNumber);
 Carte Game_prompt(Carte *mainJoueur, int tailleMain);
 void Gamer_piocherCarte(Game *game, int playerNumber);
-int Game_checkEmptySpace(Game *game, Carte carte, int line);
+int Game_checkEmptySpace(Game *game, int line);
 void Game_emptyTheTable(Game *game);
 #endif
