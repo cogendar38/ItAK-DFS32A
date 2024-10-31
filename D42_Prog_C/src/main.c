@@ -26,16 +26,21 @@ int main(int argc, char* argv[])
 	separator(10);
 
 	int tourIndex = 0;
+	int curentPlayer = 0;
 
 	do {
-		Carte carteChoisie = Game_prompt(game.players[0].main, game.players[0].tailleMain);
+		// Afficher le joueur qui doit jouer
+		printf("%s à vous de jouer\n", game.players[curentPlayer].name);
+
+		Carte carteChoisie = Game_prompt(game.players[curentPlayer].main, game.players[curentPlayer].tailleMain);
 		printf("Vous avez choisie la carte : ");
 		Carte_show(carteChoisie);
 
 		// Jouer la carte
-		Game_playCarte(&game, carteChoisie, 0);
+		Game_playCarte(&game, carteChoisie, curentPlayer);
 
 		tourIndex++;
+		curentPlayer = !curentPlayer;
 	} while (tourIndex < 10);
 
 	// Retour à la ligne
