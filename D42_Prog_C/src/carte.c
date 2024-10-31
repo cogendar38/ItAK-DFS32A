@@ -87,6 +87,31 @@ Carte Carte_create(int niveau, int couleur, int force)
     return carte;
 }
 
+const char *Carte_getNiveau(int niveau)
+{
+    const char *niveaux[] = {"1", "2", "3"};
+
+    // Vérifier si le niveau est valide
+    if (niveau >= 0 && niveau < 3) {
+        return niveaux[niveau];
+    } else {
+        // Retourner une chaîne de caractères par défaut si le niveau n'est pas valide
+        return "Invalide";
+    }
+}
+
+const char *Carte_getCouleur(int couleur)
+{
+	const char *couleurs[] = {"blanc", "gris", "noir", "bleu", "orange", "rouge", "violet", "rose", "jaune", "vert"};
+	return couleurs[couleur];
+}
+
+const char *Carte_getForce(int force)
+{
+	const char *forces[] = {"2", "3", "4", "5", "6", "10"};
+	return forces[force];	
+}
+
 // Afficher une carte
 void Carte_show(Carte carte)
 {
@@ -94,5 +119,5 @@ void Carte_show(Carte carte)
 	const char *forces[] = {"2", "3", "4", "5", "6", "10"};
 	const char *couleurs[] = {"blanc", "gris", "noir", "bleu", "orange", "rouge", "violet", "rose", "jaune", "vert"};
 
-	printf("Niveau %s - Couleur %s - Force %s\n", niveaux[carte.niveau], couleurs[carte.couleur], forces[carte.force]);
+	printf("Niveau %s - Couleur %s - Force %s\n", Carte_getNiveau(carte.niveau), Carte_getCouleur(carte.couleur), Carte_getForce(carte.force));
 }

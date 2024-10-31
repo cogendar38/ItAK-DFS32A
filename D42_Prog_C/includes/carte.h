@@ -13,4 +13,7 @@ typedef struct {
 
 Carte Carte_create(int niveau, int couleur, int force);
 void Carte_show(Carte carte);
+const char *Carte_getNiveau(int niveau);
+const char *Carte_getCouleur(int couleur);
+const char *Carte_getForce(int force);
 #endif

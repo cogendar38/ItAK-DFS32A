@@ -7,6 +7,9 @@
 // Initialisation du jeu
 void Game_init(Game *game)
 {
+	// Vider le tableau
+	Game_emptyTheTable(game);
+
 	// Création des cartes
 	int nbCartes = Game_genererCartes(game->pioche);
 	game->taillePioche = nbCartes;
@@ -18,6 +21,22 @@ void Game_init(Game *game)
 
 	// Distribuer les cartes aux joueurs
 	Game_distribuer(game, 10);
+}
+
+// Vider le tableau
+void Game_emptyTheTable(Game *game)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			Carte carte;
+			carte.couleur = -1;
+			carte.niveau = -1;
+			carte.force = -1;
+			game->tableau[i][j] = carte;
+		}
+	}
 }
 
 // Génération des cartes de jeu
@@ -96,6 +115,42 @@ void Game_afficherMain(Carte *mainJoueur, int tailleMain)
 	{
 		printf("Index %d : ", i);
 		Carte_show(mainJoueur[i]);
+	}
+}
+
+int Game_checkEmptySpace(Game *game, Carte carte, int line) {
+    for (int i = 0; i < 5; i++) {
+        if (game->tableau[line][i].niveau == -1) {
+            // Espace vide
+            game->tableau[line][i] = carte;
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Jouer une carte
+void Game_playCarte(Game *game, Carte carte, int playerNumber)
+{
+	switch (carte.niveau)
+	{
+		case 0:
+			// Chercher un endroit
+			int space = Game_checkEmptySpace(game, carte, 0);
+			if (space == -1)
+			{
+				printf("Aucun emplacement libre dans la rangée 0");
+			}
+			else
+			{
+				printf("%s %d\n", "La carte à été placée dans la case ", space);
+			}
+			break;
+		case 1:
+			// Chercher un endroit vide dans la rangée 1 et vérifier si une carte est placée dans la rangée du dessus
+			break;
+		case 2:
+			// Checher un endroit vide dans la rangée 2 et vérifier si une carte est placée dans la rangée du dessus
 	}
 }
 
