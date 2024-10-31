@@ -8,9 +8,6 @@
 // Initialisation du jeu
 void Game_init(Game *game)
 {
-	// Vider le tableau
-	Game_emptyTheTable(game);
-
 	// Créer nos joueurs
 	Player player1 = Player_createPlayer();
 	Player player2 = Player_createPlayer();
@@ -18,6 +15,10 @@ void Game_init(Game *game)
 	// Stocker les joueurs
 	game->players[0] = player1;
 	game->players[1] = player2;
+
+	// Vider le board des joueurs
+	Player_emptyTheBoard(&game->players[0]);
+	Player_emptyTheBoard(&game->players[1]);
 
 	// Création des cartes
 	int nbCartes = Game_genererCartes(game->pioche);
@@ -28,22 +29,6 @@ void Game_init(Game *game)
 
 	// Distribuer les cartes aux joueurs
 	Game_distribuer(game, 10);
-}
-
-// Vider le tableau
-void Game_emptyTheTable(Game *game)
-{
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 5; j++)
-		{
-			Carte carte;
-			carte.couleur = -1;
-			carte.niveau = -1;
-			carte.force = -1;
-			game->tableau[i][j] = carte;
-		}
-	}
 }
 
 // Génération des cartes de jeu
@@ -114,17 +99,6 @@ void Game_distribuer(Game *game, int numberOfCards)
 	printf("%d %s\n", numberOfCards, "cartes ont été distribuée à chaque joueur.");
 }
 
-// Afficher la main d'un joueur
-void Game_afficherMain(Carte *mainJoueur, int tailleMain)
-{
-	printf("%s\n", "Votre main de jeu : ");
-	for (int i = 0; i < tailleMain; i++)
-	{
-		printf("Index %d : ", i);
-		Carte_show(mainJoueur[i]);
-	}
-}
-
 int Game_checkEmptySpace(Game *game, int line) {
     for (int i = 0; i < 5; i++) {
         if (game->tableau[line][i].niveau == -1) {
@@ -175,16 +149,16 @@ void Game_playCarte(Game *game, Carte carte, int playerNumber)
 }
 
 // Prompt l'utilisateur pour choisir une carte
-Carte Game_prompt(Carte *mainJoueur, int tailleMain)
+Carte Game_prompt(Player *player)
 {
 	// Afficher les cartes du joueur
-	Game_afficherMain(mainJoueur, tailleMain);
+	Player_afficherMain(player);
 
-	printf("%s : %d \n", "Taille de la main du joueur", tailleMain);
+	printf("%s : %d \n", "Taille de la main du joueur", player->tailleMain);
 
 	// Demander à l'utilisateur de choisir une carte
 	int index;
 	printf("Choisissez une carte (index) : ");
 	scanf("%d", &index);
-	return mainJoueur[index];
+	return player->main[index];
 }

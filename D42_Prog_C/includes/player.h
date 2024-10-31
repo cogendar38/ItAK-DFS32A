@@ -8,8 +8,11 @@ typedef struct {
 	char name[20];
 	Carte main[10];
 	int tailleMain;
+	Carte board[3][5];
 } Player;
 
 Player Player_createPlayer();
+void Player_emptyTheBoard(Player *player);
+void Player_afficherMain(Player *player);
 
 #endif

@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
 		// Afficher le joueur qui doit jouer
 		printf("%s à vous de jouer\n", game.players[curentPlayer].name);
 
-		Carte carteChoisie = Game_prompt(game.players[curentPlayer].main, game.players[curentPlayer].tailleMain);
+		Carte carteChoisie = Game_prompt(&game.players[curentPlayer]);
 		printf("Vous avez choisie la carte : ");
 		Carte_show(carteChoisie);
 
