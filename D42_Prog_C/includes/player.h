@@ -1,21 +1,17 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "carte.h"
+#include "card.h"
+#include <stdio.h>
 
 typedef struct {
-	int number;
-	char name[20];
-	Carte main[10];
-	int tailleMain;
-	Carte board[3][5];
+	Card main;
+	char *name;
+	int mainLength;
 	int forceTotal;
+	Card *board[];
 } Player;
 
 Player Player_createPlayer();
-void Player_emptyTheBoard(Player *player);
-void Player_afficherMain(Player *player);
-void Player_playCarte(Player *player, Carte carte);
-int Player_checkEmptySpace(Carte *line);
 
-#endif
+#endif //PLAYER_H
