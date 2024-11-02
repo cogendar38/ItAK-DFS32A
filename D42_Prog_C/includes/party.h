@@ -11,5 +11,6 @@ typedef struct {
 } Party;
 
 Party Party_play();
+int Party_cardsGenerate(Card *pioche);
 
 #endif //PARTY_H

@@ -38,5 +38,6 @@ typedef struct {
 const char *Card_getCouleur(Card card);
 const char *Card_getForce(Card card);
 const char *Card_getNiveau(Card card);
+Card Card_create(int niveau, int couleur, int force);
 
 #endif // CARD_H

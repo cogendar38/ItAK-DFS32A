@@ -5,15 +5,12 @@
  * @brief Crée un joueur, en demandant son nom à l'utilisateur.
  * @return le joueur créé.
  */
-Player Player_createPlayer()
+void Player_createPlayer(Player *player)
 {
-    Player player;
-    player.forceTotal = 0;
-    player.mainLength = 0;
+    player->forceTotal = 0;
+    player->mainLength = 0;
 
     // Demander à l'utilisateur de saisir son nom
-    printf("Veuillez entrez votre nom : \n");
-    scanf("%s", player.name);
-
-    return player;
+    printf("Veuillez entrez votre nom (50 caractères maximum) : ");
+    scanf("%50s", player->name);
 }
